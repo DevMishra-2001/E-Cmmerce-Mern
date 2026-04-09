@@ -6,6 +6,14 @@ const port = process.env.PORT || 3000;
 
 ConnectMongoDB();
 
+// Handle uncaught exception error
+
+process.on("uncaughtException", (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log(`Server is shutting Down , due to uncaught exception errors`);
+  process.exit(1);
+});
+
 const server = app.listen(port, () => {
   console.log(`Server is running on Port ${port}`);
 });
